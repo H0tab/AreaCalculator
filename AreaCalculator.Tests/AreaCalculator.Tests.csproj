@@ -21,4 +21,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AreaCalculator.Core\AreaCalculator.Core.csproj" />
+  </ItemGroup>
+
 </Project>
