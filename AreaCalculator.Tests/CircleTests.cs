@@ -2,46 +2,31 @@
 {
     public class CircleTests
     {
-        [Fact]
-        public void GetArea_Radius5_Return79()
+        [Theory]
+        [InlineData(1)]
+        [InlineData(13)]
+        [InlineData(50.5)]
+        public void GetArea_CircleWithValidRadius_ReturnExpectedArea(double radius)
         {
-            //Arrange
-            Circle circle = new(5);
+            var circle = new Circle(radius);
 
-            //Act
             var area = circle.GetArea();
-            var result = Math.Round(area);
+            var expectedArea = Math.PI * Math.Pow(radius, 2);
 
-            //Assert
-            Assert.Equal(79, result);
+            Assert.Equal(expectedArea, area);
         }
 
-        [Fact]
-        public void GetArea_Radius0_Return0()
+        [Theory]
+        [InlineData(-1)]
+        [InlineData(0)]
+        [InlineData(-50.5)]
+        public void GetArea_CircleWithInvalidRadius_Return0(double radius)
         {
-            //Arrange
-            Circle circle = new(0);
+            var circle = new Circle(radius);
 
-            //Act
             var area = circle.GetArea();
-            var result = Math.Round(area);
 
-            //Assert
-            Assert.Equal(0, result);
-        }
-
-        [Fact]
-        public void GetArea_RadiusMinus5_Return0()
-        {
-            //Arrange
-            Circle circle = new(-5);
-
-            //Act
-            var area = circle.GetArea();
-            var result = Math.Round(area);
-
-            //Assert
-            Assert.Equal(0, result);
+            Assert.Equal(0, area);
         }
     }
 }

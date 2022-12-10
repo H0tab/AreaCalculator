@@ -2,134 +2,72 @@
 {
     public class TriangleTests
     {
-        [Fact]
-        public void GetArea_TriangleWithSides_7_15_20_Return42()
+        [Theory]
+        [InlineData(7, 15, 20, 42)]
+        [InlineData(3, 4, 5, 6)]
+        [InlineData(5, 5, 8, 12)]
+        public void GetArea_TriangleWithValidSides_ReturnExpectedArea(double a, double b, double c, double expectedArea)
         {
-            //Arrange
-            Triangle triangle = new(7, 15, 20);
+            var triangle = new Triangle(a, b, c);
 
-            //Act
-            var result = triangle.GetArea();
+            var area = triangle.GetArea();
 
-            //Assert
-            Assert.Equal(42, result);
+            Assert.Equal(expectedArea, area);
         }
 
-        [Fact]
-        public void GetArea_TriangleWithSides_7_15_25_Return0()
+        [Theory]
+        [InlineData(15, -22, 30)]
+        [InlineData(-10, -8, -12)]
+        [InlineData(1, 10, 50)]
+        [InlineData(0, 13, 26)]
+        [InlineData(0, 0, 0)]
+        public void GetArea_TriangleWithInvalidSides_Return0(double a, double b, double c)
         {
-            //Arrange
-            Triangle triangle = new(7, 15, 25);
+            var triangle = new Triangle(a, b, c);
 
-            //Act
-            var result = triangle.GetArea();
+            var area = triangle.GetArea();
 
-            //Assert
-            Assert.Equal(0, result);
+            Assert.Equal(0, area);
         }
 
-        [Fact]
-        public void GetArea_TriangleWithSides_0_15_25_Return0()
+        [Theory]
+        [InlineData(6, 8, 10)]
+        [InlineData(9, 12, 15)]
+        [InlineData(10, 24, 26)]
+        public void IsRectangular_RectangularTriangle_ReturnTrue(double a, double b, double c)
         {
-            //Arrange
-            Triangle triangle = new(0, 15, 25);
+            var triangle = new Triangle(a, b, c);
 
-            //Act
-            var result = triangle.GetArea();
+            var isRectangularTriangle = triangle.IsRectangular();
 
-            //Assert
-            Assert.Equal(0, result);
+            Assert.True(isRectangularTriangle);
         }
 
-        [Fact]
-        public void GetArea_TriangleWithSides_minus5_15_25_Return0()
+        [Theory]
+        [InlineData(5, 6, 7)]
+        [InlineData(3, 4, 6)]
+        [InlineData(9, 11, 13)]
+        public void IsRectangular_TriangleIsNotRectangular_ReturnFalse(double a, double b, double c)
         {
-            //Arrange
-            Triangle triangle = new(-5, 15, 25);
+            var triangle = new Triangle(a, b, c);
 
-            //Act
-            var result = triangle.GetArea();
+            var isRectangularTriangle = triangle.IsRectangular();
 
-            //Assert
-            Assert.Equal(0, result);
+            Assert.False(isRectangularTriangle);
         }
 
-        [Fact]
-        public void GetArea_TriangleWithNegativeSides_Return0()
+        [Theory]
+        [InlineData(20, 30, -10)]
+        [InlineData(-5, -14, -4)]
+        [InlineData(0, 32, 17)]
+        [InlineData(0, 0, 0)]
+        public void IsRectangular_TriangleWithInvalidSides_ReturnFalse(double a, double b, double c)
         {
-            //Arrange
-            Triangle triangle = new(-5, -10, -50);
+            var triangle = new Triangle(a, b, c);
 
-            //Act
-            var result = triangle.GetArea();
+            var isRectangularTriangle = triangle.IsRectangular();
 
-            //Assert
-            Assert.Equal(0, result);
-        }
-
-        [Fact]
-        public void IsRectangular_TriangleWithSides_7_24_25_ReturnTrue()
-        {
-            //Arrange
-            Triangle triangle = new(7, 24, 25);
-
-            //Act
-            var result = triangle.IsRectangular();
-
-            //Assert
-            Assert.True(result);
-        }
-
-        [Fact]
-        public void IsRectangular_TriangleWithSides_6_8_10_ReturnTrue()
-        {
-            //Arrange
-            Triangle triangle = new(6, 8, 10);
-
-            //Act
-            var result = triangle.IsRectangular();
-
-            //Assert
-            Assert.True(result);
-        }
-
-        [Fact]
-        public void IsRectangular_TriangleWithSides_0_8_10_ReturnFalse()
-        {
-            //Arrange
-            Triangle triangle = new(0, 8, 10);
-
-            //Act
-            var result = triangle.IsRectangular();
-
-            //Assert
-            Assert.False(result);
-        }
-
-        [Fact]
-        public void IsRectangular_TriangleWithSides_10_8_10_ReturnFalse()
-        {
-            //Arrange
-            Triangle triangle = new(10, 8, 10);
-
-            //Act
-            var result = triangle.IsRectangular();
-
-            //Assert
-            Assert.False(result);
-        }
-
-        [Fact]
-        public void IsRectangular_TriangleWithNegativeSides_ReturnFalse()
-        {
-            //Arrange
-            Triangle triangle = new(-6, -15, -10);
-
-            //Act
-            var result = triangle.IsRectangular();
-
-            //Assert
-            Assert.False(result);
+            Assert.False(isRectangularTriangle);
         }
     }
 }
