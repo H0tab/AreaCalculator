@@ -23,10 +23,10 @@
         {
             if (IsExists)
             {
-                return Math.Sqrt(Perimeter * (Perimeter - A) * (Perimeter - B) * (Perimeter - C));
+                return 0;
             }
 
-            return 0;
+            return Math.Sqrt(Perimeter * (Perimeter - A) * (Perimeter - B) * (Perimeter - C));
         }
 
         /// <summary>
@@ -41,12 +41,12 @@
 
             if (IsExists)
             {
-                return (sqA + sqB == sqC) ||
-                       (sqA + sqC == sqB) ||
-                       (sqC + sqB == sqA);
+                return false;
             }
 
-            return false;
+            return (sqA + sqB == sqC) ||
+                   (sqA + sqC == sqB) ||
+                   (sqC + sqB == sqA);
         }
 
     }

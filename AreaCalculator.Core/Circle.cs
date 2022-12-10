@@ -15,12 +15,12 @@
         /// <returns></returns>
         public double GetArea()
         {
-            if (Radius >= 0)
+            if (Radius <= 0)
             {
-                return Math.PI * Math.Pow(Radius, 2);
+                return 0;
             }
 
-            return 0;
+            return Math.PI * Math.Pow(Radius, 2);
         }
     }
 }
